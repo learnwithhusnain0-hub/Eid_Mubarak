@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Eid Mubarak Card | Shareable Wishes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Amiri:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a2f1f 0%, #063018 50%, #0a2f1f 100%);
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            padding: 2rem;
+        }
+
+        /* animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(196,139,59,0.2), transparent);
+            border-radius: 50%;
+            animation: floatGlow 8s ease-in-out infinite;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+            50% { transform: translate(50px, 30px); opacity: 0.6; }
+        }
+
+        .star {
+            position: absolute;
+            color: #ffd966;
+            font-size: 1rem;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* main layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+
+        /* card section - appears first */
+        .card-section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eid-card {
+            background: linear-gradient(135deg, #fffaf0, #fff3e0);
+            border-radius: 32px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2), 0 0 0 1px rgba(196,139,59,0.2);
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-seal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #c48b3b, #8b5a2e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .arabic-header {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            color: #c48b3b;
+            margin-bottom: 1rem;
+        }
+
+        .recipient-display {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c48b3b, #8b5a2e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 1rem 0;
+            word-break: break-word;
+        }
+
+        .message-display {
+            color: #5a3e28;
+            line-height: 1.6;
+            margin: 1.5rem 0;
+            font-size: 1rem;
+        }
+
+        .sender-display {
+            color: #b87c3a;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        .open-hint {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #e2cfb5;
+            color: #c48b3b;
+            font-size: 0.9rem;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* form section */
+        .form-section {
+            background: rgba(255, 248, 235, 0.96);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .form-section h2 {
+            color: #c48b3b;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #5a3e28;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8d9c8;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #c48b3b;
+            box-shadow: 0 0 0 3px rgba(196,139,59,0.2);
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #c48b3b, #a56b2a);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(165,107,42,0.3);
+        }
+
+        /* link box - shows after generation */
+        .link-box {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f5ede2;
+            border-radius: 20px;
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .link-box.show {
+            display: block;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-url {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            word-break: break-all;
+            font-size: 0.85rem;
+            color: #6b4c2a;
+            margin: 10px 0;
+            border: 1px solid #e2cfb5;
+            font-family: monospace;
+        }
+
+        .copy-btn, .share-btn {
+            background: #2c5a3a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 5px 5px 0 0;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover, .share-btn:hover {
+            background: #1e422a;
+            transform: scale(0.98);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2c5a3a;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .initial-card {
+            position: relative;
+        }
+
+        .gold-border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(196,139,59,0.3);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-animation">
+    <div class="glow" style="top: 10%; left: 5%;"></div>
+    <div class="glow" style="bottom: 20%; right: 5%; animation-delay: -3s;"></div>
+</div>
+
+<div class="container">
+    <div class="main-grid">
+        <!-- CARD SECTION - Shows first -->
+        <div class="card-section">
+            <div class="eid-card" id="eidCard">
+                <div class="card-seal">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="card-inner">
+                    <div class="arabic-header">بسم الله الرحمن الرحيم</div>
+                    <i class="fas fa-star-of-life" style="font-size: 2rem; color: #c48b3b; margin: 0.5rem 0;"></i>
+                    <div class="recipient-display" id="cardName">Muhammad Hassan</div>
+                    <div class="message-display" id="cardMessage">
+                        May Allah bless you with happiness, peace, and prosperity. Eid Mubarak! ✨
+                    </div>
+                    <div style="margin: 1rem 0;">
+                        <i class="fas fa-moon"></i> ★ <i class="fas fa-star"></i> ★ <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="arabic-header" style="font-size: 1.5rem;">عيد مبارك</div>
+                    <div class="sender-display" id="cardSender"></div>
+                    <div class="open-hint">
+                        <i class="fas fa-hand-point-right"></i> Click to open your card <i class="fas fa-gift"></i>
+                    </div>
+                </div>
+                <div class="gold-border"></div>
+            </div>
+        </div>
+
+        <!-- FORM SECTION -->
+        <div class="form-section">
+            <h2>
+                <i class="fas fa-pen-fancy"></i>
+                Personalize Your Card
+            </h2>
+            
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Recipient Name</label>
+                <input type="text" id="recipientName" placeholder="Enter name" value="Muhammad Hassan">
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-heart"></i> Custom Message</label>
+                <textarea id="customMessage" rows="3" placeholder="Write your Eid wishes...">May Allah bless you with happiness, peace, and prosperity. Eid Mubarak! ✨</textarea>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-user-friends"></i> From (Optional)</label>
+                <input type="text" id="senderName" placeholder="Your name">
+            </div>
+            
+            <button class="generate-btn" onclick="generateAndUpdate()">
+                <i class="fas fa-magic"></i> Update Card & Generate Link
+            </button>
+            
+            <!-- LINK BOX - Shows link after generation -->
+            <div class="link-box" id="linkBox">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                    <i class="fas fa-link" style="color: #c48b3b;"></i>
+                    <strong style="color: #5a3e28;">Your Shareable Link:</strong>
+                </div>
+                <div class="link-url" id="shareLink"></div>
+                <button class="copy-btn" onclick="copyLink()">
+                    <i class="fas fa-copy"></i> Copy Link
+                </button>
+                <button class="share-btn" onclick="shareLink()">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+                <p style="font-size: 0.7rem; margin-top: 10px; color: #866a44;">
+                    <i class="fas fa-info-circle"></i> Anyone with this link will see this exact card
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i> <span id="toastMsg">Link copied!</span>
+</div>
+
+<script>
+    let isCardOpened = false;
+    
+    // Card click to open animation
+    const cardElement = document.getElementById('eidCard');
+    const openHint = document.querySelector('.open-hint');
+    
+    cardElement.addEventListener('click', function(e) {
+        if (!isCardOpened) {
+            // Opening animation
+            cardElement.style.animation = 'none';
+            cardElement.offsetHeight; // trigger reflow
+            cardElement.style.animation = 'fadeInUp 0.6s ease-out';
+            
+            // Add open effect
+            cardElement.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                cardElement.style.transform = 'scale(1)';
+            }, 300);
+            
+            // Change seal icon
+            const seal = document.querySelector('.card-seal');
+            seal.innerHTML = '<i class="fas fa-envelope-open"></i>';
+            seal.style.animation = 'none';
+            
+            // Hide hint
+            if (openHint) {
+                openHint.style.opacity = '0';
+                setTimeout(() => {
+                    openHint.style.display = 'none';
+                }, 500);
+            }
+            
+            isCardOpened = true;
+            showToastMessage('✨ Card opened! Eid Mubarak! ✨', '🎉');
+            
+            // Confetti effect
+            createConfetti();
+        }
+    });
+    
+    // Function to update card and generate link
+    function generateAndUpdate() {
+        // Get values
+        let name = document.getElementById('recipientName').value.trim();
+        let message = document.getElementById('customMessage').value.trim();
+        let sender = document.getElementById('senderName').value.trim();
+        
+        // Set defaults if empty
+        if (!name) name = "Muhammad Hassan";
+        if (!message) message = "May Allah bless you with happiness, peace, and prosperity. Eid Mubarak! ✨";
+        
+        // Update card display
+        document.getElementById('cardName').innerHTML = name;
+        document.getElementById('cardMessage').innerHTML = message;
+        
+        if (sender) {
+            document.getElementById('cardSender').innerHTML = `<i class="fas fa-heart"></i> From: ${sender}`;
+        } else {
+            document.getElementById('cardSender').innerHTML = '';
+        }
+        
+        // Reset card open state for new card
+        if (isCardOpened) {
+            const seal = document.querySelector('.card-seal');
+            seal.innerHTML = '<i class="fas fa-envelope"></i>';
+            seal.style.animation = 'pulse 2s infinite';
+            
+            if (openHint) {
+                openHint.style.display = 'block';
+                openHint.style.opacity = '1';
+            }
+            isCardOpened = false;
+        }
+        
+        // Generate shareable link
+        generateShareableLink(name, message, sender);
+        
+        // Show success animation
+        showToastMessage('Card updated! Link generated below 👇', '✨');
+        
+        // Add pulse effect to card
+        cardElement.style.animation = 'none';
+        cardElement.offsetHeight;
+        cardElement.style.animation = 'fadeInUp 0.5s ease-out';
+        
+        // Confetti for update
+        createMiniConfetti();
+    }
+    
+    // Generate shareable link (no backend needed)
+    function generateShareableLink(name, message, sender) {
+        // Create data object
+        const cardData = {
+            n: name,
+            m: message,
+            s: sender || ''
+        };
+        
+        // Encode to base64
+        const encodedData = btoa(unescape(encodeURIComponent(JSON.stringify(cardData))));
+        
+        // Get current URL without parameters
+        const currentUrl = window.location.href.split('?')[0];
+        const shareableUrl = `${currentUrl}?card=${encodedData}`;
+        
+        // Display link
+        const linkElement = document.getElementById('shareLink');
+        linkElement.innerHTML = shareableUrl;
+        
+        // Show link box
+        const linkBox = document.getElementById('linkBox');
+        linkBox.classList.add('show');
+        
+        // Update URL without reload
+        const url = new URL(window.location);
+        url.searchParams.set('card', encodedData);
+        window.history.pushState({}, '', url);
+    }
+    
+    // Copy link to clipboard
+    function copyLink() {
+        const linkText = document.getElementById('shareLink').innerText;
+        navigator.clipboard.writeText(linkText).then(() => {
+            showToastMessage('Link copied to clipboard! 📋', '✓');
+        }).catch(() => {
+            showToastMessage('Press Ctrl+C to copy', '📋');
+        });
+    }
+    
+    // Share link
+    function shareLink() {
+        const linkText = document.getElementById('shareLink').innerText;
+        if (navigator.share) {
+            navigator.share({
+                title: 'Eid Mubarak Card',
+                text: 'I made this special Eid card for you!',
+                url: linkText
+            }).catch(() => {
+                copyLink();
+            });
+        } else {
+            copyLink();
+        }
+    }
+    
+    // Show toast message
+    function showToastMessage(message, icon = '✓') {
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        toastMsg.innerHTML = `${icon} ${message}`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+    
+    // Confetti effect
+    function createConfetti() {
+        for (let i = 0; i < 80; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = Math.random() * 8 + 4 + 'px';
+            confetti.style.height = Math.random() * 8 + 4 + 'px';
+            confetti.style.backgroundColor = ['#c48b3b', '#f4c542', '#e8b45e', '#ffd966'][Math.floor(Math.random() * 4)];
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '-10px';
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            confetti.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 3000);
+        }
+    }
+    
+    function createMiniConfetti() {
+        for (let i = 0; i < 30; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.width = Math.random() * 6 + 3 + 'px';
+            confetti.style.height = Math.random() * 6 + 3 + 'px';
+            confetti.style.backgroundColor = '#c48b3b';
+            confetti.style.left = Math.random() * 100 + '%';
+            confetti.style.top = '-10px';
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            confetti.style.animation = `fall ${Math.random() * 1.5 + 1.5}s linear forwards`;
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+                confetti.remove();
+            }, 2000);
+        }
+    }
+    
+    // Add fall animation style
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Load shared card from URL
+    function loadSharedCard() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedCard = urlParams.get('card');
+        
+        if (encodedCard) {
+            try {
+                const decodedData = JSON.parse(decodeURIComponent(escape(atob(encodedCard))));
+                if (decodedData.n) {
+                    document.getElementById('recipientName').value = decodedData.n;
+                    document.getElementById('cardName').innerHTML = decodedData.n;
+                }
+                if (decodedData.m) {
+                    document.getElementById('customMessage').value = decodedData.m;
+                    document.getElementById('cardMessage').innerHTML = decodedData.m;
+                }
+                if (decodedData.s) {
+                    document.getElementById('senderName').value = decodedData.s;
+                    if (decodedData.s) {
+                        document.getElementById('cardSender').innerHTML = `<i class="fas fa-heart"></i> From: ${decodedData.s}`;
+                    }
+                }
+                
+                // Auto-open card for shared link
+                setTimeout(() => {
+                    cardElement.click();
+                }, 800);
+                
+                showToastMessage('🎊 Special card for you! Eid Mubarak! 🎊', '🌟');
+            } catch(e) {
+                console.log('Invalid card data');
+            }
+        }
+    }
+    
+    // Initialize
+    loadSharedCard();
+    
+    // Add floating stars
+    function createStars() {
+        const bgAnim = document.querySelector('.bg-animation');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.innerHTML = '★';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.fontSize = Math.random() * 10 + 8 + 'px';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            bgAnim.appendChild(star);
+        }
+    }
+    createStars();
+</script>
+</body>
+</html>
